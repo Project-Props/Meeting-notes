@@ -1,0 +1,59 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[T1]{fontenc}
+\usepackage{graphics}
+\usepackage{qtree}
+\usepackage{tikz}
+\usepackage[utf8]{inputenc} % æøå
+\usepackage[T1]{fontenc} % mere æøå
+\usepackage[danish]{babel} % orddeling
+\usepackage{verbatim} % så man kan skrive ren tekst
+\usepackage[all]{xy} % den sidste (avancerede) formel i dokumentet
+
+\title{PKSU - Props 2.0} 
+\author{Louise Knudsen}
+\date{\today}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+
+\newcommand{\og}{\wedge}
+
+\begin{document}
+\maketitle
+\subsection*{13/03/2014 - 1. møde}
+Torsdag d. 13/03/2014 kl. 15.30-17.30, afholdte vi (Helena, David og Louise) vores første møde med Mikkel, som er den koordinerende formand for rekvisit-afdelingen på Det Kongelige Teater (DKT). \\
+På mødet blev vi præsenteret for det nuværende system - et lille lækkert all-caps-lock design i den tyrkise farveskala fra slut 80'erne. \\
+Fra den eftersendte rapport skrevet af Claus, som har lavet det nuværende system, ved vi at database-systemets kildekode er skrevet i PAL og kører i databaseprogrammet Paradox 4.5 (PDOX). \\
+Mikkel viser os hvordan han bruger systemet, som ligger som net-aps (?) på I-drevet (noget med vbs-filer??). Som det ser ud lige nu har DKT mindst 4 seperate systemer: \\\\
+Props - rekvisit-databasen \\
+DKT-net - deres intranet som de (i hvertfald i rekvisitten) ikke rigtig bruger \\
+kglteater.dk - deres eksterne hjemmeside\\
+Kongeplanen, som de bruger til planlægning og overblik (over forestillingerne?) \\\\
+Disse systemer snakker kun minimalt sammen. Vi diskuterede muligheden for at inkorporere det fremtidige database-system i deres intranet, da der så allerede ville være et velfungerende login system, men da Mikkel har interesse i at gæster udefra skal kunne få en form for tidsbegrænset adgang til systemet (som han tillader, som admin?), nedprioteres idéen om intranettet, da dette ville hindre gæste-adgang (så skulle gæster have adgang til hele intranettet, og ikke kun databasen, som ønsket). \\
+I Props har de også funktionen OPUS, som er en oversigt over ALLE forestillinger (nye samt gamle), som, somehow snakker sammen med Kongeplanen.
+\subsubsection*{Generelt}
+Hver forestilling har et unikt 8 cifret nr. - først 4 (tilfældelige?) cifre, efterfulgt af en bindestreg og årstallet denne udgave af forestillingen havde premiere. Der kan altså være flere forestillinger med samme navn, og disse er så forskellige opsætninger af samme forestilling. Der kan også være en forestilling, som er i repertoire i 2014-sæsonen, men hvis 4 sidste cifre er et andet årstal, f.eks. 1981, fordi den havde premiere første gang i 1981, og så har man valgt at spille samme opsætning i 2014. \\
+Hvis en forestilling er SKILT betyder det at den er kasseret, og det ikke er hensigten at spille denne opsætning i fremtiden. Rekvisitterne bliver altså lagt på plads på lageret. \\
+Hvis en forestilling er I REPERTOIRE, spilles den i den igangværende sæson. \\
+Hvis en forestilling er i CONTAINER el.lign., betyder det at den ikke spilles i denne sæson, men at den endnu ikke er skilt. Rekvisitterne er altså stadig samlet, og kan (i princippet) ikke bruges af andre forestillinger. \\
+\subsubsection*{Ønsker}
+Der ønskes et system hvor det er muligt at lave en mere advanceret søgning - der foreslåes af Mikkel en form for træstruktur som bliver "større og større" i takt med at søgningen bliver mere og mere detaljeret. \\
+En form for "ledigheds" indikation - der forslåes af Mikkel farver: GRØN = ledig rekvisit (ligger på lageret). ORANGE = optaget, men ikke i brug (ligger i container el.lign.). RØD = i brug (i repertoire).
+Udover det ønskes muligheden for at reservere rekvisitter (blå?).\\
+Der ønskes et web-baseret system, så det er muligt at logge ind på bærbare enheder. Der foreslåes fra IT-afdelingen et system lavet med mySQL og PHP (dette uddybes forhåbentlig på næste møde) - vi er mere interesseret i Python + framework (Bottle el.lign.). \\
+Vi snakker om server-plads - Mikkel pointerer at vi bare skal sige til hvis vi skal bruge penge til udviklingen af systemet - dem har de massere af. \\\\
+Vi aftaler at vi afholder næste møde torsdag d. 20/03/2014, hvor Martin fra IT-afdelingen vil være tilstede. Vi aftaler ligeledes at vi på et tidspunkt skal have et møde med møbelafdelingen - Palle og Thomas, som kan fortælle os mere om Møbelbogen, og muligvis Charlotte, som også har en finger med i spillet mht. den mystiske Møbelbog. 
+
+\subsection*{20/03/2014 - 2. møde}
+Torsdag d. 20/03/2014 afholdte vi møde med Mikkel, fra rekvisitten og Martin, fra IT-afdelingen. Martin fortæller os lidt om hvordan deres forskellige IT-systemer fungerer: \\ Kongeplanens data er på en Microsoft (SQL?) server, som det på sigt kunne være fedt hvis vores system automatisk kunne hente informationer fra om produktionerne for kommende sæsoner, så disse ikke skal indtastes manuelt (som Mikkel gør, som det ser ud nu).
+\\
+Cumulus er et program, som indekserer alle DKT's medier (billeder, videoer, lyd), som ligger seperat (somewhere) som tiff-filer, og Cumulus laver dem til jpeg-filer. Martin ser en mulighed i at ligge billeder af rekvisitterne ind i Cumulus, og så lave 'et spejl' af den meta data i mySQL, så vores system kan sammenkoble produktionerne med billederne ('tagge' billederne med forestillings-nr.?). Dette vil Martin stå for, med hans ord: Han klargører 'spejlet' så vi kan 'lyne' vores system på. \\\\
+Vi igen om muligheden for gæsteadgang til det nye system, og når frem til at en gæstebruger højst sandsynligt kun vil være interesseret i billeder af rekvisitterne. Martin mener at dette kan gøres med Cumulus, så vi skrotter idéen om gæsteadgang. \\
+Vi aftaler at vi koder systemet i PHP, selvom vores ønske var Python, men Martin pointerer at de fleste andre applikationer de har, er lavet med mySQL og PHP. Det er ligeledes det sprog Martin er bedst bekendt med, og vi bliver derfor enige om at det er mest hensigtsmæssigt at gøre sådan, hvilket muligvis også spare os noget support tid i sidste ende. \\\\
+Vi afslutter mødet på Martins kontor, hvor vi får en USB pind med en sandkasse-version af Props, plus nogle andre ting med, og bliver informeret om at de på DKT skal til at opgradere til Windows 7 og Internet Explorer 9 (tror jeg?), og aftaler at Mikkel sætter et møde op med Palle og Thomas fra møbelafdelingen tirsdag d. 25/03/2014 kl. 13. Vi aftaler ligeledes at vi mødes d. 9/4/2014 og forventningsafstemmer, og får 100 \% på plads hvad systemet skal/ikke skal kunne, så vi kan komme igang med at kode.
+\end{document}
